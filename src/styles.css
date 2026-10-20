@@ -1,0 +1,181 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-gold: var(--gold);
+  --color-logo-navy: var(--logo-navy);
+  --color-brand-blue: var(--brand-blue);
+  --color-brand-electric: var(--brand-electric);
+  --color-brand-violet: var(--brand-violet);
+  --color-brand-light: var(--brand-light);
+
+  --font-display: "Saira Condensed", "Brothers XL", "Sora", system-ui, sans-serif;
+  --font-sans: "Wix Madefor Display", "Inter", system-ui, sans-serif;
+
+  --shadow-elegant: 0 20px 60px -20px color-mix(in oklab, #001046 45%, transparent);
+  --shadow-card: 0 8px 30px -10px color-mix(in oklab, #001046 22%, transparent);
+  --gradient-hero: linear-gradient(135deg, #001046 0%, #072261 45%, #0000b2 100%);
+  --gradient-navy: linear-gradient(180deg, #072261 0%, #001046 100%);
+  --gradient-brand: linear-gradient(135deg, #0000b2 0%, #2207f1 100%);
+  --gradient-card: linear-gradient(145deg, color-mix(in oklab, #072261 92%, transparent), color-mix(in oklab, #001046 95%, transparent));
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Brand palette (manual de identidade) */
+  --navy-deep: #001046;       /* Azul profundo */
+  --navy: #072261;            /* Azul institucional principal */
+  --logo-navy: #072261;
+  --brand-blue: #00348e;      /* Azul de apoio */
+  --brand-electric: #0000b2;  /* Azul vibrante */
+  --brand-violet: #2207f1;    /* Azul vibrante (degradê) */
+  --brand-light: #cddff1;     /* Azul claro */
+  --gold: #cddff1;            /* legado: substituído por azul claro */
+
+  --background: #ffffff;
+  --foreground: #001046;
+
+  --card: #ffffff;
+  --card-foreground: #001046;
+
+  --popover: #ffffff;
+  --popover-foreground: #001046;
+
+  --primary: #072261;
+  --primary-foreground: #ffffff;
+  --primary-glow: #2207f1;
+
+  --secondary: #f1f1f1;
+  --secondary-foreground: #072261;
+
+  --muted: #f1f1f1;
+  --muted-foreground: #4b5b7a;
+
+  --accent: #cddff1;
+  --accent-foreground: #072261;
+
+  --destructive: oklch(0.58 0.22 25);
+  --destructive-foreground: #ffffff;
+
+  --border: #e3e9f3;
+  --input: #e3e9f3;
+  --ring: #0000b2;
+}
+
+.dark {
+  --background: var(--navy-deep);
+  --foreground: oklch(0.98 0.005 250);
+  --card: oklch(0.22 0.10 260);
+  --card-foreground: oklch(0.98 0.005 250);
+  --popover: oklch(0.22 0.10 260);
+  --popover-foreground: oklch(0.98 0.005 250);
+  --primary: oklch(0.65 0.18 255);
+  --primary-foreground: oklch(0.15 0.08 260);
+  --secondary: oklch(0.28 0.10 260);
+  --secondary-foreground: oklch(0.98 0.005 250);
+  --muted: oklch(0.28 0.08 260);
+  --muted-foreground: oklch(0.72 0.03 250);
+  --accent: oklch(0.32 0.12 258);
+  --accent-foreground: oklch(0.98 0.005 250);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 16%);
+  --ring: oklch(0.65 0.18 255);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.005em;
+    text-transform: none;
+  }
+}
+
+@layer utilities {
+  .bg-hero-gradient { background: var(--gradient-hero); }
+  .bg-navy-gradient { background: var(--gradient-navy); }
+  .bg-brand-gradient { background: var(--gradient-brand); }
+  .text-brand-gradient {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .shadow-elegant { box-shadow: var(--shadow-elegant); }
+  .shadow-card-soft { box-shadow: var(--shadow-card); }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, white 6%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, white 6%, transparent) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Pattern institucional sutil — linhas geométricas conectadas */
+  .bg-brand-pattern {
+    background-image:
+      radial-gradient(circle at 20% 30%, color-mix(in oklab, #2207f1 14%, transparent) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, color-mix(in oklab, #0000b2 14%, transparent) 0, transparent 45%),
+      linear-gradient(135deg, transparent 49.5%, color-mix(in oklab, white 6%, transparent) 49.5% 50.5%, transparent 50.5%),
+      linear-gradient(45deg, transparent 49.5%, color-mix(in oklab, white 4%, transparent) 49.5% 50.5%, transparent 50.5%);
+    background-size: 100% 100%, 100% 100%, 64px 64px, 64px 64px;
+  }
+}
+
+@keyframes marquee-ltr {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-ltr {
+  animation: marquee-ltr 30s linear infinite;
+}
